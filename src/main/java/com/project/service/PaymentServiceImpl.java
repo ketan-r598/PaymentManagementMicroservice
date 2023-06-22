@@ -20,7 +20,7 @@ public class PaymentServiceImpl implements PaymentService {
 		Optional<Payment> p = repo.findById(id);
 
 		if (p.isEmpty()) {
-			repo.save(p.get());
+			repo.save(payment);
 			System.out.println("\nPayment Saved Successfully\n");
 			return;
 		}
