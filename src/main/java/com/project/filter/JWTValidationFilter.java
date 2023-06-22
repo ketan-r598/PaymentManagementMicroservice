@@ -42,7 +42,7 @@ public class JWTValidationFilter extends GenericFilterBean{
 					.getBody();
 			request.setAttribute("claims", claims);
 			System.out.println(claims.getSubject());
-			
+			System.out.println("im here at line 45");
 			int userId = (int) claims.get("userId");
 			String email = (String) claims.getSubject();
 			String password = (String) claims.get("password");
@@ -51,6 +51,7 @@ public class JWTValidationFilter extends GenericFilterBean{
 			if(!role.equalsIgnoreCase("customer")) {
 				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 				response.getWriter().println("Access Denied!");
+				//System.out.println("im inside if block");
 				return;
 			}
 			
