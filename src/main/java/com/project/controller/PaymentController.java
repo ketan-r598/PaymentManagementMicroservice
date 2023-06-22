@@ -12,13 +12,13 @@ import com.project.model.Payment;
 import com.project.service.PaymentService;
 
 @Controller
-@RequestMapping("/payments/")
+@RequestMapping("/payments/customer/")
 public class PaymentController {
 
 	@Autowired
 	private PaymentService service;
 	
-	@PostMapping("customer/add")
+	@PostMapping("add")
 	public void addPayment(Payment payment) {
 		service.addPayment(payment);
 //		try {
@@ -30,7 +30,7 @@ public class PaymentController {
 //		}
 	}
 	
-	@DeleteMapping("customer/delete")
+	@DeleteMapping("delete")
 	public void deletePayment(Payment payment) {
 		service.deletePayment(payment);
 //		try {
@@ -42,7 +42,7 @@ public class PaymentController {
 //		}
 	}
 	
-	@GetMapping("customer/getPayment")
+	@GetMapping("getPayment")
 	public Payment getPayment(int id)  {
 		
 		Optional<Payment> p = Optional.of(service.getPayment(id));
