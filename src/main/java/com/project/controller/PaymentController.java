@@ -5,18 +5,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.google.common.base.Optional;
 import com.project.model.Payment;
 import com.project.service.PaymentService;
 
 @Controller
+@RequestMapping("/payments/")
 public class PaymentController {
 
 	@Autowired
 	private PaymentService service;
 	
-	@PostMapping("/users/payments/add")
+	@PostMapping("customer/add")
 	public void addPayment(Payment payment) {
 		service.addPayment(payment);
 //		try {
@@ -28,7 +30,7 @@ public class PaymentController {
 //		}
 	}
 	
-	@DeleteMapping("/users/payments/delete")
+	@DeleteMapping("customer/delete")
 	public void deletePayment(Payment payment) {
 		service.deletePayment(payment);
 //		try {
@@ -40,7 +42,7 @@ public class PaymentController {
 //		}
 	}
 	
-	@GetMapping("/users/payments/getPayment")
+	@GetMapping("customer/getPayment")
 	public Payment getPayment(int id)  {
 		
 		Optional<Payment> p = Optional.of(service.getPayment(id));
