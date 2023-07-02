@@ -1,5 +1,6 @@
 package com.project.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,30 +26,43 @@ public class PaymentServiceImpl implements PaymentService {
 			return;
 		}
 //		throw new DuplicatePaymentIDException();
-		
 	}
 
 	@Override
-	public void deletePayment(Payment payment) {
-		int id = payment.getPaymentId();
+//	public void deletePayment(int id) {
+////		int id = payment.getPaymentId();
+//		Optional<Payment> p = repo.findById(id);
+//
+//		if (p.isEmpty()) {
+////			throw new PaymentDoesNotExistException();
+//		}
+//		repo.deleteById(id);
+//		System.out.println("\nPayment Deleted Successfully\n");
+//		
+//	}
+
+	public Optional<Payment> getPayment(int id) {
 		Optional<Payment> p = repo.findById(id);
 
 		if (p.isEmpty()) {
 //			throw new PaymentDoesNotExistException();
 		}
-		repo.deleteById(id);
-		System.out.println("\nPayment Deleted Successfully\n");
-		
+		return p;
 	}
 
 	@Override
-	public Payment getPayment(int id) {
+	public void deletePayment(int id) {
 		Optional<Payment> p = repo.findById(id);
-
-		if (p.isEmpty()) {
-//			throw new PaymentDoesNotExistException();
+		if(p.isPresent()) {
+			repo.deleteById(id);
+		}else {
+			return;
 		}
-		return p.get();
 	}
-
+	
+	@Override
+	public List<Payment> getPaymentByUserId(int id) {
+		return repo.findByUserId(id);
+		
+	}
 }

@@ -57,7 +57,7 @@ class PaymentServiceTests {
         payment.setPaymentStatus("Paid");
         payment.setPaymentMethod("Credit Card");
 
-        assertDoesNotThrow(() -> paymentService.deletePayment(payment));
+        assertDoesNotThrow(() -> paymentService.deletePayment(payment.getPaymentId()));
         verify(paymentRepository, times(1)).deleteById(payment.getPaymentId());
     }
 
@@ -75,10 +75,10 @@ class PaymentServiceTests {
 
         when(paymentRepository.findById(paymentId)).thenReturn(Optional.of(payment));
 
-        Payment result = paymentService.getPayment(paymentId);
+        Optional<Payment> result = paymentService.getPayment(paymentId);
 
-        assertNotNull(result);
-        assertEquals(payment, result);
+        assertNotNull(result.get());
+        assertEquals(payment, result.get());
         verify(paymentRepository, times(1)).findById(paymentId);
     }
 }

@@ -9,7 +9,7 @@ import com.project.filter.JWTValidationFilter;
 
 @Configuration
 public class FilterConfig {
-	public static final String CUSTOMER_PATH = "/payments/customer/*";
+	public static final String CUSTOMER_PATH = "/user/customer/*";
 	
 	@Bean
 	public FilterRegistrationBean<GenericFilterBean> jwtFilter(){

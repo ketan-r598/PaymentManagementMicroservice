@@ -14,6 +14,7 @@ public class Payment {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int paymentId;
 	
+	int userId;
 	int bookingId;
 	String paymentDate;
 	double amount;
@@ -24,9 +25,19 @@ public class Payment {
 		
 	}
 
-	public Payment(int paymentId, int bookingId, String paymentDate, double amount, String paymentStatus,
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public Payment(int paymentId, int userId, int bookingId, String paymentDate, double amount, String paymentStatus,
 			String paymentMethod) {
+		super();
 		this.paymentId = paymentId;
+		this.userId = userId;
 		this.bookingId = bookingId;
 		this.paymentDate = paymentDate;
 		this.amount = amount;
@@ -84,7 +95,8 @@ public class Payment {
 
 	@Override
 	public String toString() {
-		return "Payment [paymentId=" + paymentId + ", bookingId=" + bookingId + ", paymentDate=" + paymentDate
-				+ ", amount=" + amount + ", paymentStatus=" + paymentStatus + ", paymentMethod=" + paymentMethod + "]";
+		return "Payment [paymentId=" + paymentId + ", userId=" + userId + ", bookingId=" + bookingId + ", paymentDate="
+				+ paymentDate + ", amount=" + amount + ", paymentStatus=" + paymentStatus + ", paymentMethod="
+				+ paymentMethod + "]";
 	}
 }
